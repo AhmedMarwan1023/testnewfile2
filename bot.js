@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
-const prefix = "+"
+const prefix = "!"
  
 client.on('ready', () => {
 console.log(`Online.`);
@@ -29,6 +29,7 @@ client.on('message',async message => {
  
  
   if(message.content.startsWith(prefix + "credits")) {
+     if(message.content.startsWith(prefix + "credit")) {
   if(args[0] !== `${prefix}credit` && args[0] !== `${prefix}credits`) return;
  
   if(args[2]) {
@@ -47,7 +48,7 @@ client.on('message',async message => {
       message.channel.awaitMessages(m => m.author.id === message.author.id, {max: 1, time: 10000}).then(c => {
         if(c.first().content === number) {
           m.delete();
-          message.channel.send(`**You Translate \`${balance}\` Coins To ${mention} | :atm:**`);
+          message.channel.send(`**You Translate \`${balance}\` Credits To ${mention} | :atm:**`);
           credits[author].credits += (-balance);
           credits[mention.id].credits += (+balance);
           fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
@@ -60,12 +61,12 @@ client.on('message',async message => {
   }
   if(!args[2]) {
     if(mention.bot) return message.channel.send(`**Please Include Right name | :x:**`);
-    message.channel.send(`${mention}'s Coins is $**${credits[mention.id].credits}**`);
+    message.channel.send(`${mention} Your Credits balence is : $**${credits[mention.id].credits}**`);
   }
  
   }
   if(message.content.startsWith(prefix + "daily")) {
-    if(cool.includes(message.author.id)) return message.channel.send(`**You need to wait a Day | :x:**`);
+    if(cool.includes(message.author.id)) return message.channel.send(`**You need to wait One Day | :x:**`);
     if(mentionn) {
       var one = Math.floor(Math.random() * 9) + 1;
       var two = Math.floor(Math.random() * 9) + 1;
@@ -82,7 +83,7 @@ client.on('message',async message => {
             credits[mentionn.id].credits += (+daily);
             fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
  
-          message.channel.send(`**${message.author.username} Has Transalte \`${daily}\`  to ${args} Coins!**`);  
+          message.channel.send(`**${message.author.username} Has Transalte \`${daily}\`  to ${args} Credits!**`);  
           }
           if(collected.first().content !== number) {
             return m.delete();
@@ -93,7 +94,7 @@ client.on('message',async message => {
       credits[author].credits += (+daily);
       fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
  
-      message.channel.send(`**You Got \`${daily}\` Coins!**`);
+      message.channel.send(`**You Got \`${daily}\` Credits!**`);
     }
     cool.unshift(message.author.id);
  
