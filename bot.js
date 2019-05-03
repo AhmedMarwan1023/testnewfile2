@@ -94,7 +94,7 @@ client.on('message',async message => {
       credits[author].credits += (+daily);
       fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
  
-      message.channel.send(`**You Got \`${daily}\` Credits!**`);
+      message.channel.send(`** You received your :yen: \`${daily}\` Credits!**`);
     }
     cool.unshift(message.author.id);
  
