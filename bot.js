@@ -29,7 +29,6 @@ client.on('message',async message => {
  
  
   if(message.content.startsWith(prefix + "credits")) {
-     if(message.content.startsWith(prefix + "credit")) {
   if(args[0] !== `${prefix}credit` && args[0] !== `${prefix}credits`) return;
  
   if(args[2]) {
